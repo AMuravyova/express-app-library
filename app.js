@@ -13,7 +13,8 @@ var helmet = require('helmet');
 var app = express();
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://dbAdmin:n103488@cluster0-5w25a.gcp.mongodb.net/test?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://dbAdmin:n103488@cluster0-5w25a.gcp.mongodb.net/test?retryWrites=true&w=majority';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
